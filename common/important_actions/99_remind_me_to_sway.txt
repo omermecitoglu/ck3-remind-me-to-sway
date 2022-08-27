@@ -1,0 +1,167 @@
+﻿action_sway_reminder = {
+	priority = 296
+	combine_into_one = yes
+	check_create_action = {
+		if = {
+			limit = {
+				trigger_if = {
+					any_scheme = {
+						OR = {
+							scheme_type = courting
+							scheme_type = befriend
+							scheme_type = seduce
+							scheme_type = sway
+							scheme_type = learn_language
+							scheme_type = elope
+							scheme_type = convert_to_witchcraft
+						}
+						count < 1
+					}
+				}
+			}
+			if = { # Archbishop
+				limit = {
+					root.realm_priest = {
+						opinion = {
+							target = root
+							value < 50
+						}
+					}
+				}
+				try_create_important_action = {
+					important_action_type = action_sway_reminder
+					actor = root
+					recipient = root.realm_priest
+				}
+			}
+			if = { # Pope
+				limit = {
+					root.faith.religious_head = {
+						opinion = {
+							target = root
+							value < 100
+						}
+					}
+				}
+				try_create_important_action = {
+					important_action_type = action_sway_reminder
+					actor = root
+					recipient = root.faith.religious_head
+				}
+			}
+			if = { # Spymaster
+				limit = {
+					exists = cp:councillor_spymaster
+					cp:councillor_spymaster = {
+						opinion = {
+							target = root
+							value < 100
+						}
+					}
+				}
+				try_create_important_action = {
+					important_action_type = action_sway_reminder
+					actor = root
+					recipient = cp:councillor_spymaster
+				}
+			}
+			every_vassal = {
+				limit = {
+					is_a_faction_member = yes
+					opinion = {
+						target = root
+						value < 100
+					}
+				}
+				try_create_important_action = {
+					important_action_type = action_sway_reminder
+					actor = root
+					recipient = this
+				}
+			}
+			every_consort = {
+				limit = {
+					opinion = {
+						target = root
+						value < 100
+					}
+				}
+				try_create_important_action = {
+					important_action_type = action_sway_reminder
+					actor = root
+					recipient = this
+				}
+			}
+		}
+	}
+
+	unimportant = {
+		OR = {
+			AND = {
+				NOT = {
+					scope:recipient = root.realm_priest
+				}
+				root.realm_priest = {
+					opinion = {
+						target = root
+						value < 50
+					}
+				}
+			}
+			AND = {
+				NOT = {
+					scope:recipient = root.faith.religious_head
+					scope:recipient = root.realm_priest
+				}
+				root.faith.religious_head = {
+					opinion = {
+						target = root
+						value < 50
+					}
+				}
+			}
+			AND = {
+				exists = cp:councillor_spymaster
+				NOT = {
+					scope:recipient = root.faith.religious_head
+					scope:recipient = root.realm_priest
+					scope:recipient = cp:councillor_spymaster
+				}
+				cp:councillor_spymaster = {
+					opinion = {
+						target = root
+						value < 100
+					}
+				}
+			}
+			AND = {
+				NOT = {
+					scope:recipient = root.faith.religious_head
+					scope:recipient = root.realm_priest
+					scope:recipient = cp:councillor_spymaster
+					scope:recipient = {
+						is_vassal_of = root
+					}
+				}
+				any_vassal = {
+					limit = {
+						is_a_faction_member = yes
+						opinion = {
+							target = root
+							value < 100
+						}
+					}
+					count > 0
+				}
+			}
+		}
+	}
+
+	effect = {
+		open_interaction_window = {
+			interaction = sway_interaction
+			actor = scope:actor
+			recipient = scope:recipient
+		}
+	}
+}
