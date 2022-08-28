@@ -27,6 +27,12 @@
 							value < 50
 						}
 					}
+					root = {
+						is_character_interaction_potentially_accepted = {
+							recipient = root.realm_priest
+							interaction = sway_interaction
+						}
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_sway_reminder
@@ -40,6 +46,12 @@
 						opinion = {
 							target = root
 							value < 100
+						}
+					}
+					root = {
+						is_character_interaction_potentially_accepted = {
+							recipient = root.faith.religious_head
+							interaction = sway_interaction
 						}
 					}
 				}
@@ -58,6 +70,12 @@
 							value < 100
 						}
 					}
+					root = {
+						is_character_interaction_potentially_accepted = {
+							recipient = cp:councillor_spymaster
+							interaction = sway_interaction
+						}
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_sway_reminder
@@ -72,6 +90,12 @@
 						target = root
 						value < 100
 					}
+					root = {
+						is_character_interaction_potentially_accepted = {
+							recipient = prev
+							interaction = sway_interaction
+						}
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_sway_reminder
@@ -84,6 +108,12 @@
 					opinion = {
 						target = root
 						value < 100
+					}
+					root = {
+						is_character_interaction_potentially_accepted = {
+							recipient = prev
+							interaction = sway_interaction
+						}
 					}
 				}
 				try_create_important_action = {
@@ -107,6 +137,12 @@
 						value < 50
 					}
 				}
+				root = {
+					is_character_interaction_potentially_accepted = {
+						recipient = root.realm_priest
+						interaction = sway_interaction
+					}
+				}
 			}
 			AND = {
 				NOT = {
@@ -117,6 +153,12 @@
 					opinion = {
 						target = root
 						value < 50
+					}
+				}
+				root = {
+					is_character_interaction_potentially_accepted = {
+						recipient = root.faith.religious_head
+						interaction = sway_interaction
 					}
 				}
 			}
@@ -131,6 +173,12 @@
 					opinion = {
 						target = root
 						value < 100
+					}
+				}
+				root = {
+					is_character_interaction_potentially_accepted = {
+						recipient = cp:councillor_spymaster
+						interaction = sway_interaction
 					}
 				}
 			}
@@ -149,6 +197,12 @@
 						opinion = {
 							target = root
 							value < 100
+						}
+						root = {
+							is_character_interaction_potentially_accepted = {
+								recipient = prev
+								interaction = sway_interaction
+							}
 						}
 					}
 					count > 0
