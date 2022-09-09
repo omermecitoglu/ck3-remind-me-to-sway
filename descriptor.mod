@@ -5,5 +5,5 @@ tags={
 	"Utilities"
 }
 name="Remind Me to Sway"
-supported_version="1.6.1.2"
+supported_version="1.7.0"
 remote_file_id="2854840756"
