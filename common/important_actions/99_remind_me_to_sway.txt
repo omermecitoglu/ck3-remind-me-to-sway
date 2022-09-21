@@ -21,6 +21,7 @@
 			}
 			if = { # Archbishop
 				limit = {
+					exists = root.realm_priest
 					root.realm_priest = {
 						opinion = {
 							target = root
@@ -131,6 +132,7 @@
 				NOT = {
 					scope:recipient = root.realm_priest
 				}
+				exists = root.realm_priest
 				root.realm_priest = {
 					opinion = {
 						target = root
