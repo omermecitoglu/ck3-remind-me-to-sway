@@ -28,7 +28,7 @@
 					recipient = root.faith.religious_head
 				}
 			}
-			if = { # Spymaster
+			if = { # Spymaster | AGENT POWER: 75
 				limit = {
 					spymaster_hates_me = yes
 					can_sway = { TARGET = cp:councillor_spymaster }
@@ -39,7 +39,7 @@
 					recipient = cp:councillor_spymaster
 				}
 			}
-			every_vassal = {
+			every_vassal = { # Faction Members
 				limit = {
 					vassal_hates_the_liege = yes
 					can_be_swayed_by = { CHARACTER = root }
@@ -50,7 +50,77 @@
 					recipient = this
 				}
 			}
-			every_consort = {
+			every_consort = { # AGENT POWER: 50 (30 for concubines)
+				limit = {
+					has_opinion_lower_than_100 = { TARGET = root }
+					can_be_swayed_by = { CHARACTER = root }
+				}
+				try_create_important_action = {
+					important_action_type = action_sway_reminder
+					actor = root
+					recipient = this
+				}
+			}
+			every_relation = { # Best friends | AGENT_POWER: 50
+				type = best_friend
+				limit = {
+					has_opinion_lower_than_100 = { TARGET = root }
+					can_be_swayed_by = { CHARACTER = root }
+				}
+				try_create_important_action = {
+					important_action_type = action_sway_reminder
+					actor = root
+					recipient = this
+				}
+			}
+			every_court_position_holder = { # AGENT POWER: 30
+				limit = {
+					OR = {
+						has_court_position = court_physician_court_position
+						has_court_position = food_taster_court_position
+						has_court_position = cupbearer_court_position
+						has_court_position = bodyguard_court_position
+						has_court_position = chief_eunuch_court_position
+					}
+					has_opinion_lower_than_100 = { TARGET = root }
+					can_be_swayed_by = { CHARACTER = root }
+				}
+				try_create_important_action = {
+					important_action_type = action_sway_reminder
+					actor = root
+					recipient = this
+				}
+			}
+			every_relation = { # Friends & Lovers | AGENT_POWER: 30
+				limit = {
+					OR = {
+						has_relation_friend = root
+						has_relation_lover = root
+					}
+					has_opinion_lower_than_100 = { TARGET = root }
+					can_be_swayed_by = { CHARACTER = root }
+				}
+				try_create_important_action = {
+					important_action_type = action_sway_reminder
+					actor = root
+					recipient = this
+				}
+			}
+			every_councillor = { # Other Councillors | AGENT_POWER: 25
+				limit = {
+					NOT = {
+						has_council_position = councillor_spymaster
+					}
+					has_opinion_lower_than_100 = { TARGET = root }
+					can_be_swayed_by = { CHARACTER = root }
+				}
+				try_create_important_action = {
+					important_action_type = action_sway_reminder
+					actor = root
+					recipient = this
+				}
+			}
+			every_close_family_member = { # Close Family | AGENT_POWER: 20
 				limit = {
 					has_opinion_lower_than_100 = { TARGET = root }
 					can_be_swayed_by = { CHARACTER = root }
@@ -90,7 +160,7 @@
 				spymaster_hates_me = yes
 				can_sway = { TARGET = cp:councillor_spymaster }
 			}
-			AND = {
+			AND = { # Faction Members
 				NOT = {
 					scope:recipient = realm_priest
 					scope:recipient = faith.religious_head
