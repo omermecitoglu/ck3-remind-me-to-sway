@@ -110,6 +110,7 @@
 				limit = {
 					NOT = {
 						has_council_position = councillor_spymaster
+						has_council_position = councillor_court_chaplain
 					}
 					has_opinion_lower_than_100 = { TARGET = root }
 					can_be_swayed_by = { CHARACTER = root }
